@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Register to Blogz!</h1>
+<form action="/signup" method="post">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" name="email" type="email" value="{{ email }}" required>
+        <p class="error">{{email_error}}</p>
+    </div>
+    <div class="form-group">
+        <label for="passoword">Password</label>
+        <input class="form-control" name="password" type="password" required>
+        <p class="error">{{password_error}}</p>
+    </div>
+    <div class="form=group">
+        <label for="verify">Verify Password</label>
+        <input class="form-control" name="verify" type="password" required>
+        <p class="error">{{verify_error}}</p>
+    </div>
+    <br>
+    <input type="submit" value="Signup" class="btn btn-default">
+</form>
+{% endblock %}

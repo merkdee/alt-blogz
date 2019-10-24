@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Add Blog Entry</h1>
+    <br>
+    <div class="form-group">
+        <form method='post'>
+            <label>Title</label>
+            {% if title_error %}
+                <p class="error">{{title_error}}</p>
+            {% endif %}
+            <input class="input-group" type="text" name='title' value='{{blog_title}}'/><br>
+            
+            <label>Body</label>
+            {% if body_error %}
+            <p class="error">{{body_error}}</p>
+            {% endif %}
+            <textarea class="form-control" name="body" rows="5" value='{{blog_body}}'></textarea><br>
+            <input class="btn btn-primary" type="submit"/>
+        </form>
+        </div>
+        {% endblock %}

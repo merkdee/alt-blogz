@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- jQuery and Bootstrap, links copied from official sites -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <a href='/' class="navbar-brand">Blogz!</a>
+        {% if 'email' in session %}
+        <ul class="nav navbar-nav">
+            <li class="navbar-text"><a href="/index">Home</a></li>
+            <li class="navbar-text"><a href="/blog">Main</a></li>
+            <li class="navbar-text"><a href="/myblog">My Blogs</a></li>
+            <li class="navbar-text"><a href="/newpost">New Blog</a></li>
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-text">{{ session['email'] }}</li>
+            <li>
+                <form method="post" action="/logout">
+                    <button class="btn btn-default navbar-btn">log out</button>
+                </form>
+            </li>
+            
+        </ul>
+        {% endif %}
+    </nav>
+
+<div class="container">
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% for category,message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{message|safe}}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+        {% block content %}
+        {% endblock %}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+</body>
+</html>

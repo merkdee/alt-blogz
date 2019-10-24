@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Log in to Blogz!</h1>
+<p>If you don't have an account, you may <a href="/signup">signup</a> for one</p>
+<div class="form-group">
+<form action="/login" method="post">
+    <label for="email">email</label>
+    {% if email_error %}
+    <p class="error">{{email_error}}</p>
+    {% endif %}
+    <input class="input-group" name="email" type="text" value="{{ email }}"><br>
+    
+        
+    <label for="password">Password</label>
+    {% if password_error %}
+    <p class="error">{{password_error}}</p>
+    {% endif %}
+       <input class="input-group" name="password" type="password"><br>
+       
+       
+    <input class="btn btn-default" type="submit" value="Login">
+</form>
+</div>
+
+{% endblock %}

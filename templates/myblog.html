@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1>My Blogz</h1>
+<h3>Posts by {{owner.email}}</h3>
+
+{% for post in owner_posts %}
+
+
+<h2><a href='/blog?id={{post.id}}'>{{post.title}}</a></h2>
+<p>{{post.body}}</p>
+
+
+{% endfor %}
+
+
+
+
+{% endblock %}
